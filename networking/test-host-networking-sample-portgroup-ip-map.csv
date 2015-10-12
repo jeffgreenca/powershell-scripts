@@ -1,0 +1,4 @@
+PortGroup,SourceIP,GatewayIP,SubnetMask,TestIP,Notes
+LABNET1,10.10.101.55,10.10.101.1,255.255.255.0,10.0.0.1,Valid
+LABNET2,10.10.102.55,10.10.102.1,255.255.255.0,10.0.0.1,Valid
+
