@@ -8,8 +8,8 @@
 #To enable VAAI:
 # ./enable-disable-vaai.ps1 -EnableVAAI -vCenter MyServer -Datacenter MyDatacenter
 
+[cmdletbinding(SupportsShouldProcess=$true)]
 param (
-  [cmdletbinding(SupportsShouldProcess=$true)]
 	[Parameter(mandatory=$true)][string]$vcenter,
 	[Parameter(mandatory=$true)][string]$datacenter,
 	[Parameter(Mandatory=$true,ParameterSetName="DisableMode")][switch]$DisableVAAI,
