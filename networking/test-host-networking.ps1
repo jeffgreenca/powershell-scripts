@@ -195,7 +195,7 @@ $cluster | get-vmhost | ? {$_.ConnectionState -match "connected" } | foreach {
 		foreach($item in $data) {
 			#Configure test port group VLAN ID for this particular VLAN test, or clear VLAN ID if none exists
 			$myVlanId = $null
-			$myVlanId = (get-vdportgroup -name $item.PortGroup)
+			$myVlanId = (get-vdportgroup -name $item.PortGroup).VlanConfiguration.Vlanid
 			if($myVlanId) {
 				$testPortGroup = $testPortGroup | Set-VDVlanConfiguration -Vlanid $myVlanId
 			} else {
