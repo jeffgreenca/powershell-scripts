@@ -1,0 +1,3 @@
+Location,Device,ip
+SITE1,OA1,172.16.1.100
+SITE2,OA1,10.10.10.100
