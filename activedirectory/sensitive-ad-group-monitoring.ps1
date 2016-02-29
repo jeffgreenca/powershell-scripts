@@ -2,6 +2,7 @@
 #Jeff Green 2016 jeffgreenca
 #Check group membership for changes, query specific set of domain controllers
 
+
 $dcList = @('dc1.lab.local','dc2.lab.local')
 $monitoredGroup = "sensitiveADGroup"
 $alertRecipEmail = "specific-administrator@lab.local"
@@ -61,11 +62,11 @@ while($true) {
 	}
 	
 	#Log alerts
-	$alerts  | % { write-output "$(get-date -f "yyyy-MM-dd hh:mm:ss") GROUP-MONITOR ALERT $_" >> $logfile }
+	$alerts  | % { write-output "$(get-date -f "yyyy-MM-dd hh:mm:ss") GROUP-MONITOR ALERT $_" | out-file -encoding UTF8 $logfile }
 	
 	#Log adds and removes
-	$adds    | % { write-output "$(get-date -f "yyyy-MM-dd hh:mm:ss") GROUP-MONITOR GROUP:$monitoredGroup DETECTED-MEMBER-ADDED $_" >> $logfile }
-	$removes | % { write-output "$(get-date -f "yyyy-MM-dd hh:mm:ss") GROUP-MONITOR GROUP:$monitoredGroup DETECTED-MEMBER-REMOVED $_" >> $logfile }
+	$adds    | % { write-output "$(get-date -f "yyyy-MM-dd hh:mm:ss") GROUP-MONITOR GROUP:$monitoredGroup DETECTED-MEMBER-ADDED $_" | out-file -encoding UTF8 $logfile }
+	$removes | % { write-output "$(get-date -f "yyyy-MM-dd hh:mm:ss") GROUP-MONITOR GROUP:$monitoredGroup DETECTED-MEMBER-REMOVED $_" | out-file -encoding UTF8 $logfile }
 	
 	#Conditions under which an alert should be sent
 	if($adds -or $removes -or $alerts) {
