@@ -1,0 +1,6 @@
+add user myadminuser ExamplePassword123
+set user access myadminuser administrator
+assign server all myadminuser
+assign interconnect all myadminuser
+assign oa myadminuser
+set user fullname myadminuser "My Admin Account"
