@@ -15,7 +15,8 @@ $snap = get-snapshot -Name $strSourceSnapshot -VM $strSourceVM
 
 if($snap) {
 	echo "Attempting to create linked clone from $strSourceVM to $strNewVM..."
-	New-VM -Name $strNewVM -VM $strSourceVM -Location (Get-VM $strSourceVM).Folder -Datastore (Get-VM $strSourceVM | get-datastore)[0] -ResourcePool Resources -LinkedClone -ReferenceSnapshot $snap
+	$vm = get-vm $strSourceVM
+	New-VM -Name $strNewVM -VM $strSourceVM -Location $vm.Folder -Datastore ($vm | get-datastore)[0] -ResourcePool ($vm | Get-ResourcePool) -LinkedClone -ReferenceSnapshot $snap
 } else {
 	echo "Unable get source VM $strSourceVM or source VM snapshot $sourceSnapshotName"
 }
