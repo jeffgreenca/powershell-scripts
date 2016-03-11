@@ -3,20 +3,20 @@
 
 param ( 
 	[Parameter(Mandatory=$true)]
-	[string]$strSourceVM,
+	[string]$SourceVM,
 	[Parameter(Mandatory=$true)]
-	[string]$strSourceSnapshot,
+	[string]$SourceSnapshot,
 	[Parameter(Mandatory=$true)]
-	[string]$strNewVM
+	[string]$NewVMName
 )
 
 echo "Getting source VM snapshot..."
-$snap = get-snapshot -Name $strSourceSnapshot -VM $strSourceVM
+$snap = get-snapshot -Name $SourceSnapshot -VM $SourceVM
 
 if($snap) {
-	echo "Attempting to create linked clone from $strSourceVM to $strNewVM..."
-	$vm = get-vm $strSourceVM
-	New-VM -Name $strNewVM -VM $strSourceVM -Location $vm.Folder -Datastore ($vm | get-datastore)[0] -ResourcePool ($vm | Get-ResourcePool) -LinkedClone -ReferenceSnapshot $snap
+	echo "Attempting to create linked clone from $SourceVM to $NewVMName..."
+	$vm = get-vm $SourceVM
+	New-VM -Name $NewVMName -VM $SourceVM -Location $vm.Folder -Datastore ($vm | get-datastore)[0] -ResourcePool ($vm | Get-ResourcePool) -LinkedClone -ReferenceSnapshot $snap
 } else {
-	echo "Unable get source VM $strSourceVM or source VM snapshot $sourceSnapshotName"
+	echo "Unable get source VM $SourceVM or source VM snapshot $sourceSnapshotName"
 }
