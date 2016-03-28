@@ -1,3 +1,4 @@
 show blade list
 show interconnect info all
 show blade info all
+show server boot all
