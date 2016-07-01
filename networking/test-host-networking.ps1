@@ -26,7 +26,7 @@
 .PARAMETER creds
 	The username and password for the guest OS of the test VM.
 .PARAMETER vmName
-	A powered on Windows OS virtual machine with VMware tools running.
+	A powered on Windows OS virtual machine with UAC disabled and VMware tools running.
 	Note this VM will be vMotioned, network reassigned, and IP address changed by this script!
 .EXAMPLE
 	.
