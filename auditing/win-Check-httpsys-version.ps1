@@ -1,5 +1,6 @@
 #See https://support.microsoft.com/en-us/help/3042553/ms15-034-vulnerability-in-http.sys-could-allow-remote-code-execution-april-14,-2015
 function Check-httpsys-version {
+       #Why go to all this work instead of just ().FileVersion?  See http://stackoverflow.com/questions/5263954/getfileversioninfo-returns-wrong-files-version-information/28700830#28700830
        $info = gci c:\windows\system32\drivers\http.sys | select -ExpandProperty versioninfo | select *
        $version = @($info.FileMajorPart, $info.FileMinorPart, $info.FileBuildPart, $info.FilePrivatePart) -join "."
 
